@@ -1,2 +1,1 @@
-# BIG_DATA
-repozytorium projektowe
+przykłady kodu do realizacji prokjektu
