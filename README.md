@@ -1,1 +1,1 @@
-przykłady kodu do realizacji prokjektu
+Przykłady kodu do realizacji prokjektu
