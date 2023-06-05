@@ -6,7 +6,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [Tabela_Stanowiska](
 	[id_s] INT NOT NULL,
-	[nazwa] VARCHAR(10) NOT NULL,
+	[nazwa] VARCHAR(50) NOT NULL,
 	CONSTRAINT [PK_Tabela_Stanowiska] PRIMARY KEY CLUSTERED 
 (
 	[id_s] ASC
