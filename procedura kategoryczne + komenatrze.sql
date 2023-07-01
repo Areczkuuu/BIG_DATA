@@ -24,6 +24,6 @@ BEGIN
 	SELECT * FROM @randomCities
 END
 
+-- Poniżej przykład użycia procedury
+	
 EXEC RandomCities @NumberOfCities = 10
-
---select count(Miasta) from MiastaSlownik
