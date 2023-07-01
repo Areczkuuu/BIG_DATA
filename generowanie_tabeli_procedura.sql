@@ -31,6 +31,8 @@ BEGIN
     EXEC sp_executesql @Dynamicznie;
 END
 
+-- Poniżej przykład użycia procedury
+	
 EXEC GenerateTable
     @liczba_wierszy = 10,
     @nazwa_tabeli_wyjsciowej = 'Tabela_proba',
