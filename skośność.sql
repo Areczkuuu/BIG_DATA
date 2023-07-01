@@ -1,10 +1,4 @@
-IF OBJECT_ID('dbo.dystry', 'FN') IS NOT NULL
-    DROP FUNCTION dbo.dystry;
-GO
-IF OBJECT_ID('tempdb..#TabelaPomocnicza') IS NOT NULL
-    DROP TABLE #TabelaPomocnicza
-GO
-
+--DROP FUNCTION IF EXISTS dbo.dystry
 -- tworzymy funkcje, ktora generuje dane numeryczne z zadana skosnoscia
 CREATE FUNCTION dbo.dystry 
 (@Mean FLOAT, @StDev FLOAT, @Skewness FLOAT, @c1 FLOAT, @c2 FLOAT)
