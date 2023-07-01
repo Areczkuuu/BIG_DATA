@@ -1,6 +1,6 @@
-DROP FUNCTION IF EXISTS dbo.skosnosc
+DROP FUNCTION IF EXISTS dbo.Skosnosc
 GO
-CREATE FUNCTION dbo.skosnosc -- tworzymy funkcje, ktora generuje dane numeryczne z zadana skosnoscia
+CREATE FUNCTION dbo.Skosnosc -- tworzymy funkcje, ktora generuje dane numeryczne z zadana Skosnoscia
 (@Mean FLOAT, @StDev FLOAT, @Skewness FLOAT, @c1 FLOAT, @c2 FLOAT)
 RETURNS FLOAT
 AS
@@ -19,7 +19,7 @@ BEGIN
   DECLARE @u1 FLOAT, @u2 FLOAT, @x FLOAT
   SET @u1 = RAND(CHECKSUM(NEWID())) -- generujemy wartosci losowe u1
   SET @u2 = RAND(CHECKSUM(NEWID())) -- generujemy wartosci losowe u2
-  SET @x = dbo.skosnosc(@mean, @std_dev, @Skewness, @u1, @u2) -- obliczanie wartosci 'x' na podstawie funkcji dbo.skosnosc()
+  SET @x = dbo.Skosnosc(@mean, @std_dev, @Skewness, @u1, @u2) -- obliczanie wartosci 'x' na podstawie funkcji dbo.Skosnosc()
   INSERT INTO #TabelaPomocnicza (n) VALUES (@x)
   SET @i = @i + 1
 END
