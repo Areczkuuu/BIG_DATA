@@ -1,6 +1,6 @@
-DROP FUNCTION IF EXISTS dbo.dystry
+DROP FUNCTION IF EXISTS dbo.Rozklad_Normalny
 GO
-CREATE FUNCTION dbo.dystry 
+CREATE FUNCTION dbo.Rozklad_Normalny 
 (@Mean FLOAT, @StDev FLOAT, @c1 FLOAT, @c2 FLOAT)
 RETURNS FLOAT
 AS
@@ -21,7 +21,7 @@ END
 GO
 -- Poniżej przykład użycia funkcji
     
-SELECT dbo.dystry(@mean, @std_dev, RAND(CHECKSUM(NEWID())), RAND(CHECKSUM(NEWID()))) AS NUM
+SELECT dbo.Rozklad_Normalny(@mean, @std_dev, RAND(CHECKSUM(NEWID())), RAND(CHECKSUM(NEWID()))) AS NUM
 FROM #TempTable
 DROP TABLE #TempTable
 GO
