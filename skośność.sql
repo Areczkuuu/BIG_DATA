@@ -1,6 +1,5 @@
 --DROP FUNCTION IF EXISTS dbo.dystry
--- tworzymy funkcje, ktora generuje dane numeryczne z zadana skosnoscia
-CREATE FUNCTION dbo.dystry 
+CREATE FUNCTION dbo.dystry -- tworzymy funkcje, ktora generuje dane numeryczne z zadana skosnoscia
 (@Mean FLOAT, @StDev FLOAT, @Skewness FLOAT, @c1 FLOAT, @c2 FLOAT)
 RETURNS FLOAT
 AS
