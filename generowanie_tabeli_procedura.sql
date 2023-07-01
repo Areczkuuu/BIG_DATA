@@ -1,4 +1,5 @@
---DROP PROCEDURE IF EXISTS GenerateTable
+DROP PROCEDURE IF EXISTS GenerateTable
+GO
 CREATE PROCEDURE GenerateTable
     @liczba_wierszy INT,
     @nazwa_tabeli_wyjsciowej NVARCHAR(100),
@@ -30,9 +31,10 @@ BEGIN
 		'FROM ' + QUOTENAME(@nazwa_tabeli_wejsciowej) + ')AS o2 ON r.numWiersz = o2.numWiersz;'
     EXEC sp_executesql @Dynamicznie;
 END
-
+GO
 -- Poniżej przykład użycia procedury
-	
+DROP TABLE IF EXISTS Tabela_proba	
+GO
 EXEC GenerateTable
     @liczba_wierszy = 10,
     @nazwa_tabeli_wyjsciowej = 'Tabela_proba',
@@ -40,3 +42,5 @@ EXEC GenerateTable
     @nazwa_kolumna1 = 'id_os',
     @nazwa_kolumna2 = 'nazwisko',
     @nazwa_kolumna3 = 'plec';
+GO
+SELECT * from Tabela_proba
