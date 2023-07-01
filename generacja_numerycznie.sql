@@ -1,10 +1,4 @@
-IF OBJECT_ID('dbo.dystry', 'FN') IS NOT NULL
-    DROP FUNCTION dbo.dystry;
-GO
---IF OBJECT_ID('tempdb..#TempTable') IS NOT NULL
---    DROP TABLE #TempTable
---GO
-
+--DROP FUNCTION IF EXISTS dbo.dystry
 CREATE FUNCTION dbo.dystry 
 (@Mean FLOAT, @StDev FLOAT, @c1 FLOAT, @c2 FLOAT)
 RETURNS FLOAT
