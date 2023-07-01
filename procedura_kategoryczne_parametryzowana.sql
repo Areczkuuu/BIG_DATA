@@ -1,4 +1,5 @@
---DROP PROCEDURE IF EXISTS RandomNumericOrCategorical;
+DROP PROCEDURE IF EXISTS RandomNumericOrCategorical
+GO
 CREATE PROCEDURE RandomNumericOrCategorical
     @TableName NVARCHAR(200), @ColumnName NVARCHAR(200), @NumberOfRecords INT
 AS
@@ -50,7 +51,8 @@ BEGIN
     '
     EXEC sp_executesql @ProcedureVariable, N'@NumberOfRecords INT', @NumberOfRecords  -- wykonanie zapytania dynamicznego, przechowywanego w zmiennej @...
 END
-
+GO
+	
 -- Poniżej przykład użycia procedury
 
 EXEC RandomNumericOrCategorical @TableName = 'Tabela_Osoby', @ColumnName = 'nazwisko', @NumberOfRecords = 10
