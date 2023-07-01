@@ -17,7 +17,9 @@ BEGIN
   INSERT INTO #TempTable (n) VALUES (1)
   SET @i = @i + 1
 END
-
+    
+-- Poniżej przykład użycia funkcji
+    
 SELECT dbo.dystry(@mean, @std_dev, RAND(CHECKSUM(NEWID())), RAND(CHECKSUM(NEWID()))) AS NUM
 FROM #TempTable
 DROP TABLE #TempTable
