@@ -1,8 +1,9 @@
+--DROP PROCEDURE IF EXISTS GenerateTable
 CREATE PROCEDURE GenerateTable
     @liczba_wierszy INT,
     @nazwa_tabeli_wyjsciowej NVARCHAR(100),
     @nazwa_tabeli_wejsciowej NVARCHAR(100),
-    @nazwa_kolumna1 NVARCHAR(40), -- kolumna, która odpowiada za id
+    @nazwa_kolumna1 NVARCHAR(40), -- kolumna, ktÃ³ra odpowiada za id
     @nazwa_kolumna2 NVARCHAR(40),
     @nazwa_kolumna3 NVARCHAR(40)
 AS
