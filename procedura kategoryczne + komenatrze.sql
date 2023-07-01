@@ -1,4 +1,5 @@
 --DROP PROCEDURE IF EXISTS RandomCities
+
 CREATE PROCEDURE RandomCities ( @NumberOfCities INT )   -- stworzenie procedury, która zwraca losowe miasta
 AS
 BEGIN
@@ -23,7 +24,8 @@ BEGIN
     END
 	SELECT * FROM @randomCities
 END
-
+GO
+	
 -- Poniżej przykład użycia procedury
 	
 EXEC RandomCities @NumberOfCities = 10
