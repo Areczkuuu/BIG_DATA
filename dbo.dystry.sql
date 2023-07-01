@@ -1,4 +1,5 @@
---DROP FUNCTION IF EXISTS dbo.dystry
+DROP FUNCTION IF EXISTS dbo.dystry
+GO
 CREATE FUNCTION dbo.dystry 
 (@Mean FLOAT, @StDev FLOAT, @c1 FLOAT, @c2 FLOAT)
 RETURNS FLOAT
@@ -17,7 +18,7 @@ BEGIN
   INSERT INTO #TempTable (n) VALUES (1)
   SET @i = @i + 1
 END
-    
+GO
 -- Poniżej przykład użycia funkcji
     
 SELECT dbo.dystry(@mean, @std_dev, RAND(CHECKSUM(NEWID())), RAND(CHECKSUM(NEWID()))) AS NUM
