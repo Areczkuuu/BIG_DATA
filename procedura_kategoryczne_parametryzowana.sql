@@ -1,57 +1,57 @@
 --DROP PROCEDURE IF EXISTS RandomNumericOrCategorical;
 CREATE PROCEDURE RandomNumericOrCategorical
-    @TableName NVARCHAR(200), @ColumnName NVARCHAR(200), @NumberOfRecords INT
+Â Â Â  @TableName NVARCHAR(200), @ColumnName NVARCHAR(200), @NumberOfRecords INT
 AS
 BEGIN
-    DECLARE @ProcedureVariable NVARCHAR(MAX) -- deklaracja zmiennej, przechowuj¹ca zapytania, MAX - ¿eby wszystko siê w niej zmieœci³o
-	-- utworzenie zapytania dynamicznego z tab tymczasow¹ i kol
-	-- sprawdzamy warunkowo, czy mamy do czynienia ze zmienn¹ kategoryczn¹ czy numeryczn¹
-	-- num - wstawiamy rekord do tab tymczasowej wybieraj¹c jedn¹ wartoœæ z podanej kol (select top 1)
-	-- kat - tak samo jak num, ale na podstawie d³ugoœci zmiennej ...
-    SET @ProcedureVariable = N' 
-    DECLARE @HelperTable AS TABLE (RecordValue NVARCHAR(MAX))
-    DECLARE @counter INT = 0
-    DECLARE @maxVal INT
-    DECLARE @randChoi INT
-    DECLARE @randVar INT
-    IF EXISTS (SELECT 1
-        FROM INFORMATION_SCHEMA.COLUMNS
-        WHERE TABLE_NAME = ' + QUOTENAME(@TableName, '''') + ' AND COLUMN_NAME = ' + QUOTENAME(@ColumnName, '''') + ' AND DATA_TYPE = ''int'')
-    BEGIN
-        SELECT @maxVal = MAX(' + QUOTENAME(@ColumnName) + ') 
-        FROM ' + QUOTENAME(@TableName) + '
-        WHILE @counter < @NumberOfRecords
-        BEGIN
-            SET @randChoi = RAND() * @maxVal
-            INSERT INTO @HelperTable
-            SELECT TOP 1 ' + QUOTENAME(@ColumnName) + '
-            FROM ' + QUOTENAME(@TableName) + '
-            WHERE ' + QUOTENAME(@ColumnName) + ' >= @randChoi
-            ORDER BY ' + QUOTENAME(@ColumnName) + '
-            SET @counter = @counter + 1
-        END
-    END
-    ELSE
-    BEGIN
-        SELECT @maxVal = MAX(LEN(' + QUOTENAME(@ColumnName) + '))
-        FROM ' + QUOTENAME(@TableName) + '
-        WHILE @counter < @NumberOfRecords
-        BEGIN
-            SET @randVar = RAND() * @maxVal
-            INSERT INTO @HelperTable
-            SELECT TOP 1 ' + QUOTENAME(@ColumnName) + '
-            FROM ' + QUOTENAME(@TableName) + '
-            WHERE LEN(' + QUOTENAME(@ColumnName) + ') >= @randVar
-            ORDER BY LEN(' + QUOTENAME(@ColumnName) + ')
-            SET @counter = @counter + 1
-        END
-    END
-    SELECT * FROM @HelperTable
-    '
-    EXEC sp_executesql @ProcedureVariable, N'@NumberOfRecords INT', @NumberOfRecords  -- wykonanie zapytania dynamicznego, przechowywanego w zmiennej @...
+Â Â Â  DECLARE @ProcedureVariable NVARCHAR(MAX) -- deklaracja zmiennej, przechowujÂ¹ca zapytania, MAX - Â¿eby wszystko siÃª w niej zmieÅ“ciÂ³o
+	-- utworzenie zapytania dynamicznego z tab tymczasowÂ¹ i kol
+	-- sprawdzamy warunkowo, czy mamy do czynienia ze zmiennÂ¹ kategorycznÂ¹ czy numerycznÂ¹
+	-- num - wstawiamy rekord do tab tymczasowej wybierajÂ¹c jednÂ¹ wartoÅ“Ã¦ z podanej kol (select top 1)
+	-- kat - tak samo jak num, ale na podstawie dÂ³ugoÅ“ci zmiennej ...
+Â Â Â  SET @ProcedureVariable = N' 
+Â Â Â  DECLARE @HelperTable AS TABLE (RecordValue NVARCHAR(MAX))
+Â Â Â  DECLARE @counter INT = 0
+Â Â Â  DECLARE @maxVal INT
+Â Â Â  DECLARE @randChoi INT
+Â Â Â  DECLARE @randVar INT
+Â Â Â  IF EXISTS (SELECT 1
+Â Â Â Â Â Â Â  FROM INFORMATION_SCHEMA.COLUMNS
+Â Â Â Â Â Â Â  WHERE TABLE_NAME = ' + QUOTENAME(@TableName, '''') + ' AND COLUMN_NAME = ' + QUOTENAME(@ColumnName, '''') + ' AND DATA_TYPE = ''int'')
+Â Â Â  BEGIN
+Â Â Â Â Â Â Â  SELECT @maxVal = MAX(' + QUOTENAME(@ColumnName) + ') 
+Â Â Â Â Â Â Â  FROM ' + QUOTENAME(@TableName) + '
+Â Â Â Â Â Â Â  WHILE @counter < @NumberOfRecords
+Â Â Â Â Â Â Â  BEGIN
+Â Â Â Â Â Â Â Â Â Â Â  SET @randChoi = RAND() * @maxVal
+Â Â Â Â Â Â Â Â Â Â Â  INSERT INTO @HelperTable
+Â Â Â Â Â Â Â Â Â Â Â  SELECT TOP 1 ' + QUOTENAME(@ColumnName) + '
+Â Â Â Â Â Â Â Â Â Â Â  FROM ' + QUOTENAME(@TableName) + '
+Â Â Â Â Â Â Â Â Â Â Â  WHERE ' + QUOTENAME(@ColumnName) + ' >= @randChoi
+Â Â Â Â Â Â Â Â Â Â Â  ORDER BY ' + QUOTENAME(@ColumnName) + '
+Â Â Â Â Â Â Â Â Â Â Â  SET @counter = @counter + 1
+Â Â Â Â Â Â Â  END
+Â Â Â  END
+Â Â Â  ELSE
+Â Â Â  BEGIN
+Â Â Â Â Â Â Â  SELECT @maxVal = MAX(LEN(' + QUOTENAME(@ColumnName) + '))
+Â Â Â Â Â Â Â  FROM ' + QUOTENAME(@TableName) + '
+Â Â Â Â Â Â Â  WHILE @counter < @NumberOfRecords
+Â Â Â Â Â Â Â  BEGIN
+Â Â Â Â Â Â Â Â Â Â Â  SET @randVar = RAND() * @maxVal
+Â Â Â Â Â Â Â Â Â Â Â  INSERT INTO @HelperTable
+Â Â Â Â Â Â Â Â Â Â Â  SELECT TOP 1 ' + QUOTENAME(@ColumnName) + '
+Â Â Â Â Â Â Â Â Â Â Â  FROM ' + QUOTENAME(@TableName) + '
+Â Â Â Â Â Â Â Â Â Â Â  WHERE LEN(' + QUOTENAME(@ColumnName) + ') >= @randVar
+Â Â Â Â Â Â Â Â Â Â Â  ORDER BY LEN(' + QUOTENAME(@ColumnName) + ')
+Â Â Â Â Â Â Â Â Â Â Â  SET @counter = @counter + 1
+Â Â Â Â Â Â Â  END
+Â Â Â  END
+Â Â Â  SELECT * FROM @HelperTable
+Â Â Â  '
+Â Â Â  EXEC sp_executesql @ProcedureVariable, N'@NumberOfRecords INT', @NumberOfRecords  -- wykonanie zapytania dynamicznego, przechowywanego w zmiennej @...
 END
 
-
+-- PoniÅ¼ej przykÅ‚ad uÅ¼ycia procedury
 
 EXEC RandomNumericOrCategorical @TableName = 'Tabela_Osoby', @ColumnName = 'nazwisko', @NumberOfRecords = 10
 
