@@ -1,5 +1,6 @@
---DROP FUNCTION IF EXISTS dbo.dystry
-CREATE FUNCTION dbo.dystry -- tworzymy funkcje, ktora generuje dane numeryczne z zadana skosnoscia
+DROP FUNCTION IF EXISTS dbo.skosnosc
+GO
+CREATE FUNCTION dbo.skosnosc -- tworzymy funkcje, ktora generuje dane numeryczne z zadana skosnoscia
 (@Mean FLOAT, @StDev FLOAT, @Skewness FLOAT, @c1 FLOAT, @c2 FLOAT)
 RETURNS FLOAT
 AS
@@ -18,11 +19,11 @@ BEGIN
   DECLARE @u1 FLOAT, @u2 FLOAT, @x FLOAT
   SET @u1 = RAND(CHECKSUM(NEWID())) -- generujemy wartosci losowe u1
   SET @u2 = RAND(CHECKSUM(NEWID())) -- generujemy wartosci losowe u2
-  SET @x = dbo.dystry(@mean, @std_dev, @Skewness, @u1, @u2) -- obliczanie wartosci 'x' na podstawie funkcji dbo.dystry()
+  SET @x = dbo.skosnosc(@mean, @std_dev, @Skewness, @u1, @u2) -- obliczanie wartosci 'x' na podstawie funkcji dbo.skosnosc()
   INSERT INTO #TabelaPomocnicza (n) VALUES (@x)
   SET @i = @i + 1
 END
-
+GO
 -- Poniżej przykład użycia funkcji
 	
 SELECT * FROM #TabelaPomocnicza -- wyswietlanie wartosci
