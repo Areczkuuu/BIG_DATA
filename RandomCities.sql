@@ -1,5 +1,5 @@
---DROP PROCEDURE IF EXISTS RandomCities
-
+DROP PROCEDURE IF EXISTS RandomCities
+GO
 CREATE PROCEDURE RandomCities ( @NumberOfCities INT )   -- stworzenie procedury, która zwraca losowe miasta
 AS
 BEGIN
