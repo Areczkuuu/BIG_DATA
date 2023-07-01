@@ -24,6 +24,8 @@ BEGIN
   SET @i = @i + 1
 END
 
+-- Poniżej przykład użycia funkcji
+	
 SELECT * FROM #TabelaPomocnicza -- wyswietlanie wartosci
 DROP TABLE #TabelaPomocnicza -- usuwamy tabele tymczasowa
 GO
